@@ -18,5 +18,5 @@ if (window.location.hostname.toLowerCase().match('forum')) {
 }
 
 function loadScript() {
-    $.getScript('https://cdn.rawgit.com/Johannes2306/Hex-Enhanced-Plus/master/HexEnhancedPlus.js');
+    $.getScript('https://gitcdn.xyz/repo/Johannes2306/Hex-Enhanced-Plus/master/HexEnhancedPlus.js');
 }
