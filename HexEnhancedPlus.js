@@ -1545,94 +1545,92 @@ function getPageDetails(){
 
 // FUNCTIONS : END \\
 
-function loadFunctions() {
-    pageDetails = getPageDetails();
-    if (window.location.hostname.toLowerCase().match('forum')) {
-        // Forum functions
-        if ($('a[title*="Logout"]').length) {
-            // User is logged in
-            $('a[href*="mode=leaders"]').on('click', function(event) {
-                event.preventDefault();
-                functions.bugfixes.fixTheTeamLink();
-            });
+pageDetails = getPageDetails();
+if (window.location.hostname.toLowerCase().match('forum')) {
+    // Forum functions
+    if ($('a[title*="Logout"]').length) {
+        // User is logged in
+        $('a[href*="mode=leaders"]').on('click', function(event) {
+            event.preventDefault();
+            functions.bugfixes.fixTheTeamLink();
+        });
 
-            if (window.location.pathname.match('/viewtopic.php')) {
-                // User is in topic
-                functions.forum.addInfiniteScroll();
-            }
+        if (window.location.pathname.match('/viewtopic.php')) {
+            // User is in topic
+            functions.forum.addInfiniteScroll();
         }
-    } else {
-        // Game functions
-        if ($('a[href="logout"]').length) {
-            // User is logged in
-            functions.isp.guard();
-            functions.btc.sidebar.add();
-            functions.btc.sidebar.live();
-            functions.clan.friendly_ips.add_sidebar();
-            functions.clan.friendly_ips.initiate_localhost();
+    }
+} else {
+    // Game functions
+    if ($('a[href="logout"]').length) {
+        // User is logged in
+        functions.isp.guard();
+        functions.btc.sidebar.add();
+        functions.btc.sidebar.live();
+        functions.clan.friendly_ips.add_sidebar();
+        functions.clan.friendly_ips.initiate_localhost();
 
-            if (localStorage.getItem('hide-he2-ad') == 'true' && $('#he2').length) {
-                $('#he2').remove();
-            } else {
-                functions.ads.addHE2AdHideButton();
-            }
+        if (localStorage.getItem('hide-he2-ad') == 'true' && $('#he2').length) {
+            $('#he2').remove();
+        } else {
+            functions.ads.addHE2AdHideButton();
+        }
 
-            if (ifPageContains('Top 7 users') && ifPageContains('Hardware Information')) {
-                functions.bugfixes.fixTop7();
-            }
+        if (ifPageContains('Top 7 users') && ifPageContains('Hardware Information')) {
+            functions.bugfixes.fixTop7();
+        }
 
-            functions.sidebar.addSideBarToggle();
+        functions.sidebar.addSideBarToggle();
 
-            if (localStorage.getItem('side-bar-small') == 'true') {
-                functions.sidebar.hideSideBar(false);
-            }
+        if (localStorage.getItem('side-bar-small') == 'true') {
+            functions.sidebar.hideSideBar(false);
+        }
 
-            if (isOnPage('/mail?action=new') || isOnPage('/mail.php?action=new')) {
-                functions.mail.addMassMailing();
-            }
+        if (isOnPage('/mail?action=new') || isOnPage('/mail.php?action=new')) {
+            functions.mail.addMassMailing();
+        }
 
-            if (ifPageContains('Reason: Ilegal Transfer')) {
-                $('body').html($('body').html().replace(/Ilegal/g, 'Illegal'));
-            }
+        if (ifPageContains('Reason: Ilegal Transfer')) {
+            $('body').html($('body').html().replace(/Ilegal/g, 'Illegal'));
+        }
 
-            if (ifPageContains('Bitcoin Market') && ifPageContains('Bitcoin Actions')) {
-                functions.btc.general.fixBTCModal();
-                functions.btc.general.addBTCCalculator();
-                functions.btc.general.addBTCChart();
-            }
+        if (ifPageContains('Bitcoin Market') && ifPageContains('Bitcoin Actions')) {
+            functions.btc.general.fixBTCModal();
+            functions.btc.general.addBTCCalculator();
+            functions.btc.general.addBTCChart();
+        }
 
-            if ((pageDetails.search !== undefined && pageDetails.search.action !== undefined) || (pageDetails.search !== undefined && pageDetails.search.cmd !== undefined) || (pageDetails.search !== undefined && pageDetails.search.pid !== undefined)) {
-                functions.processes.title_view();
+        if ((pageDetails.search !== undefined && pageDetails.search.action !== undefined) || (pageDetails.search !== undefined && pageDetails.search.cmd !== undefined) || (pageDetails.search !== undefined && pageDetails.search.pid !== undefined)) {
+            functions.processes.title_view();
+        }
+        if (pageDetails.path == "profile") {
+            if (pageDetails.search !== undefined && pageDetails.search.view == "email") {
+                functions.profile.msg();
             }
-            if (pageDetails.path == "profile") {
-                if (pageDetails.search !== undefined && pageDetails.search.view == "email") {
-                    functions.profile.msg();
-                }
-            } else if (pageDetails.path == "mail") {
-                if (!pageDetails.search || pageDetails.search.action != "new" && !pageDetails.search.id){
-                    functions.mail.modal_setup();
-                    functions.mail.mail_opt();
-                }
-            } else if (pageDetails.path == "university") {
-                if (pageDetails.search !== undefined && pageDetails.search.id !== undefined){
-                    functions.university.getResearchVariables();
-                    functions.university.calculator.setup();
-                }
-            } else if (pageDetails.path == "settings") {
-                functions.settings.passwordFix();
-            } else if (pageDetails.path == "index") {
-                functions.index.changePwd();
-            } else if (pageDetails.path == "internet") {
-                functions.clan.friendly_ips.check();
-                functions.btc.helper();
-            } else if (pageDetails.path == "clan") {
-                functions.clan.main();
-                if (pageDetails.search !== undefined && pageDetails.search.view == "friendly") {
-                    functions.clan.friendly_ips.main();
-                }
-            } else if ((pageDetails.path == "list" && pageDetails.search === undefined) || (pageDetails.search !== undefined && pageDetails.search.page !== undefined)) {
-                functions.hacked_database.setup_nav();
+        } else if (pageDetails.path == "mail") {
+            if (!pageDetails.search || pageDetails.search.action != "new" && !pageDetails.search.id){
+                functions.mail.modal_setup();
+                functions.mail.mail_opt();
             }
+        } else if (pageDetails.path == "university") {
+            if (pageDetails.search !== undefined && pageDetails.search.id !== undefined){
+                functions.university.getResearchVariables();
+                functions.university.calculator.setup();
+            }
+        } else if (pageDetails.path == "settings") {
+            functions.settings.passwordFix();
+        } else if (pageDetails.path == "index") {
+            functions.index.changePwd();
+        } else if (pageDetails.path == "internet") {
+            functions.clan.friendly_ips.check();
+            functions.btc.helper();
+        } else if (pageDetails.path == "clan") {
+            functions.clan.main();
+            if (pageDetails.search !== undefined && pageDetails.search.view == "friendly") {
+                functions.clan.friendly_ips.main();
+            }
+        } else if ((pageDetails.path == "list" && pageDetails.search === undefined) || (pageDetails.search !== undefined && pageDetails.search.page !== undefined)) {
+            functions.hacked_database.setup_nav();
         }
     }
 }
