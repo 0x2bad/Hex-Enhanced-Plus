@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HexEnhanced+
 // @namespace    HexEnhancedPlus
-// @version      1.0.3
+// @version      1.0.4
 // @description  HexEnhanced+ adds a load of features to Hacker Experience 1 and fixes some bugs aswell.
 // @author       MacHacker, Jasperr & Johannes
 // @match        https://*.hackerexperience.com/*
@@ -1735,6 +1735,10 @@ function loadScript() {
                 functions.clan.friendly_ips.initiate_localhost();
                 functions.hacked_database.runaways.initiate_localhost();
                 functions.global.addCreditsGame();
+
+                if (isOnPage('/software?page=external') || isOnPage('/software.php?page=external')) {
+                    functions.bugfixes.fixXHDChart();
+                }
 
                 if (localStorage.getItem('hide-he2-ad') == 'true' && $('#he2').length) {
                     $('#he2').remove();
