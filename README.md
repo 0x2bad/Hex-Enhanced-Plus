@@ -1,3 +1,3 @@
-# Hex-Enhanced-Plus
+# HexEnhanced+
 
 This text will be updated as soon as soon as the plugin goes public
