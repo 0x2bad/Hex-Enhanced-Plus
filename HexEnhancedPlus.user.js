@@ -100,7 +100,7 @@ function loadScript() {
             }
             var h = '<div id="gen-modal" class="modal hide" tabindex="0">\
             <div class="modal-header">\
-            <button data-dismiss="modal" class="close" type="button">×</button>\
+            <button data-dismiss="modal" class="close" type="button">&times;</button>\
             <h3>' + opts.title + '</h3>\
             </div>\
             <form action="" method="POST" id="modal-form">\
@@ -248,7 +248,7 @@ function loadScript() {
                 var entry = friendlies[1][id];
                 if (entry === null) continue;
                 if (entry.ip == connected_ip){
-                    $('<div class="alert alert-warning"><button class="close" data-dismiss="alert">×</button><strong>Warning!</strong> You have connected to <strong>'+entry.name+'\'s</strong> IP. </div>').insertAfter($(".widget-box:first"));
+                    $('<div class="alert alert-warning"><button class="close" data-dismiss="alert">&times;</button><strong>Warning!</strong> You have connected to <strong>'+entry.name+'\'s</strong> IP. </div>').insertAfter($(".widget-box:first"));
                 }
             }
         }
@@ -300,7 +300,7 @@ function loadScript() {
         }
         var btcPrice = $("#btc-buy .green").text().remove("$");
         var btcInCash = btcPrice * amount;
-        document.cookie = 'btcAmount=<button class="close" data-dismiss="alert">×</button><strong>Success!</strong> ' + amount + ' BTC bought for $' + btcInCash + '.';
+        document.cookie = 'btcAmount=<button class="close" data-dismiss="alert">&times;</button><strong>Success!</strong> ' + amount + ' BTC bought for $' + btcInCash + '.';
         while (true){
             if (amount < 9900){
                 functions.btc.buy.post(amount, true);
@@ -875,7 +875,7 @@ function loadScript() {
                 func: "getCommon"
             }
         });
-        $(".widget-content.nopadding").append('<span id="modal"><div id="gen-modal" class="modal hide in" tabindex="0" aria-hidden="false" style="display: none;"><div class="modal-header"><button data-dismiss="modal" class="close" type="button">×</button><h3>Hex Enhanced Research Calculator</h3></div><div class="modal-body">This little tool estimates how much longer you will be able to research* till you are out of money.</div><div class="modal-footer" style="padding-left: 2px;"><span class="small">* Note: This calculator is not entirely accurate due the seemingly random increase in research prices.</span></div></div></span>');
+        $(".widget-content.nopadding").append('<span id="modal"><div id="gen-modal" class="modal hide in" tabindex="0" aria-hidden="false" style="display: none;"><div class="modal-header"><button data-dismiss="modal" class="close" type="button">&times;</button><h3>Hex Enhanced Research Calculator</h3></div><div class="modal-body">This little tool estimates how much longer you will be able to research* till you are out of money.</div><div class="modal-footer" style="padding-left: 2px;"><span class="small">* Note: This calculator is not entirely accurate due the seemingly random increase in research prices.</span></div></div></span>');
         $(".close").on().click(function(){$(".modal").hide(); $(".modal-backdrop" ).remove();});
         if (r.status == 200){
             var json = JSON.parse(JSON.parse(r.responseText).msg)[0];
