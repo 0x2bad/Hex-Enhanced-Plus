@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HexEnhanced+
 // @namespace    HexEnhancedPlus
-// @version      1.0.0
+// @version      1.0.2
 // @description  HexEnhanced+ adds a load of features to Hacker Experience 1 and fixes some bugs aswell.
 // @author       MacHacker, Jasperr & Johannes
 // @match        https://*.hackerexperience.com/*
@@ -1051,7 +1051,10 @@ function loadScript() {
             if (slaves[i].v.type == "No running virus") {statistics.noviri ++;}
             else {statistics[slaves[i].v.type] ++;}
         }
-        $(".span12:first").prepend('<div class="widget-box enhanced"><div class="widget-title"><ul class="nav nav-tabs"><li class="link active" id="search-DB"><a href="#"><span class="icon-tab he16-search"></span><span class="hide-phone">Search</span></a></li><li class="link " id="statistics"><a href="#"><span class="icon-tab he16-stats"></span><span class="hide-phone">Statistics</span></a></li><li class="link " id="advanced-search"><a href="#"><span class="icon-tab he16-6"></span><span class="hide-phone">Advanced Search</span></a></li><a href="#"><span class="label label-info">Help</span></a></ul></div><div class="widget-content padding noborder"><div class="span12 search-DB" ><div id="internetSpeed-div" class="browser-input" style="float:left">Internet Speeds : <select title="Select internet speed to sort by" class="update" id="internet" style="width: 102px;margin-right: 10px;margin-top: 10px;"><option class="form" value="false">View all</option><option class="form" value="1">1 Mbit/s</option><option class="form" value="2">2 Mbit/s</option><option class="form" value="4">4 Mbit/s</option><option class="form" value="10">10 Mbit/s</option><option class="form" value="25">25 Mbit/s</option><option class="form" value="50">50 Mbit/s</option><option class="form" value="100">100 Mbit/s</option><option class="form" value="250">250 Mbit/s</option><option class="form" value="500">500 Mbit/s</option><option class="form" value="1">1 Gbit/s</option></select></div><div id="storageSpace-div" class="browser-input" style=" float:left">Storage Space : <select title="Select storage space range to sort by" id="storage" class="update" style="width: 153px; margin-right: 10px;margin-top: 10px;"><option class="form" value="false">View all</option><option class="form" value="0.1:10">100 MB - 10 GB</option><option class="form" value="10:50">10 GB - 50 GB</option><option class="form" value="50:100">50 GB - 100GB</option><option class="form" value="100:10000000">More than 100 GB</option></select></div><div id="virusType-div" class="browser-input" style="float:left">Virus Type : <select title="Select a virus to sort by" id="virus" class="update" style="width: 80px; margin-right: 10px;margin-top: 10px;"><option class="form" value="false">All</option><option class="form" value=".vddos">vddos</option><option class="form" value=".vwarez">vwarez</option><option class="form" value=".vminer">vminer</option><option class="form" value=".vspam">vspam</option><option class="form" value="No running virus">none</option></select></div></div><div class="span12 statistics" style="display:none;"><p>You have a total of <b>'+ statistics.ALL +'</b> IP of which <b><font color="red">'+statistics.noviri+'</font></b>, have no virus. Between  <span class="label label-success">' +statistics.VPC +' VPC</span> and <span class="label label-info ">'+statistics.NPC+' NPC</span> you are running <font color="orange">'+ statistics.vminer +'</font> <font color="green"><b>miner(s)</b></font>, <font color="orange">'+ statistics.vspam +'</font> <font color="green"><b>spam(s)</b></font>, and <font color="orange">'+ statistics.vwarez+'</font> <font color="green"><b>warez(s)</b></font>.<br><span class="small">Refresh page to see any scanned results.</span></p></div><div class="span12 advanced-search" style="display: none;"><div class="span12 advanced-search" style="display: none;"><div id="internetSpeed-div" class="browser-input" style="float:left">Internet Speeds : <select title="Select internet speed to sort by" class="update" id="internet" style="width: 102px;margin-right: 10px;margin-top: 10px;"><option class="form" value="false">View all</option><option class="form" value="1">1 Mbit/s</option><option class="form" value="2">2 Mbit/s</option><option class="form" value="4">4 Mbit/s</option><option class="form" value="10">10 Mbit/s</option><option class="form" value="25">25 Mbit/s</option><option class="form" value="50">50 Mbit/s</option><option class="form" value="100">100 Mbit/s</option><option class="form" value="250">250 Mbit/s</option><option class="form" value="500">500 Mbit/s</option><option class="form" value="1000">1 Gbit/s</option></select></div><div id="storageSpace-div" class="browser-input" style=" float:left">Storage Space : <select title="Select storage space range to sort by" id="storage" class="update" style="width: 153px; margin-right: 10px;margin-top: 10px;"><option class="form" value="false">View all</option><option class="form" value="0.1:10">100 MB - 10 GB</option><option class="form" value="10:50">10 GB - 50 GB</option><option class="form" value="50:100">50 GB - 100GB</option><option class="form" value="100:10000000">More than 100 GB</option></select></div><div id="virusType-div" class="browser-input" style="float:left">Virus Type : <select title="Select a virus to sort by" id="virus" class="update" style="width: 80px; margin-right: 10px;margin-top: 10px;"><option class="form" value="false">All</option><option class="form" value=".vddos">vddos</option><option class="form" value=".vwarez">vwarez</option><option class="form" value=".vminer">vminer</option><option class="form" value=".vspam">vspam</option><option class="form" value="No running virus">none</option></select></div></div><div class="span12 advanced-search" style="display: none; margin: 0px;">Full text search : <input id="text-search" type="text" style="margin: 0px;margin-right: 3px;"><span style="margin-left: 5px;" class="label label-success">VPC<input type="checkbox" style="margin: 5px;margin-bottom: 6px;" checked=""></span><span style="margin-left: 5px;" class="label label-info ">NPC<input type="checkbox" style="margin: 5px;margin-bottom: 6px;" checked=""></span></div></div></div><div class="nav nav-tabs loading" style="clear: both;display: none;">&nbsp;</div><center class=""><i style="display: none;" class="fa fa-spinner fa-spin fa-3x loading"></i></center><div class="nav nav-tabs" style="clear: both;">&nbsp;</div> </div>');
+        $(".span12:first").prepend('<div class="widget-box enhanced"><div class="widget-title"><ul class="nav nav-tabs"><li class="link active" id="search-DB"><a href="#"><span class="icon-tab he16-search"></span><span class="hide-phone">Search</span></a></li><li class="link " id="statistics"><a href="#"><span class="icon-tab he16-stats"></span><span class="hide-phone">Statistics</span></a></li><li class="link " id="advanced-search"><a href="#"><span class="icon-tab he16-6"></span><span class="hide-phone">Advanced Search</span></a></li><a href="#"><span class="label label-info">Help</span></a></ul></div><div class="widget-content padding noborder"><div class="span12 search-DB" ><div id="internetSpeed-div" class="browser-input" style="float:left">Internet Speeds : <select title="Select internet speed to sort by" class="update" id="internet" style="width: 102px;margin-right: 10px;margin-top: 10px;"><option class="form" value="false">View all</option><option class="form" value="1">1 Mbit/s</option><option class="form" value="2">2 Mbit/s</option><option class="form" value="4">4 Mbit/s</option><option class="form" value="10">10 Mbit/s</option><option class="form" value="25">25 Mbit/s</option><option class="form" value="50">50 Mbit/s</option><option class="form" value="100">100 Mbit/s</option><option class="form" value="250">250 Mbit/s</option><option class="form" value="500">500 Mbit/s</option><option class="form" value="1">1 Gbit/s</option></select></div><div id="storageSpace-div" class="browser-input" style=" float:left">Storage Space : <select title="Select storage space range to sort by" id="storage" class="update" style="width: 153px; margin-right: 10px;margin-top: 10px;"><option class="form" value="false">View all</option><option class="form" value="0.1:10">100 MB - 10 GB</option><option class="form" value="10:50">10 GB - 50 GB</option><option class="form" value="50:100">50 GB - 100GB</option><option class="form" value="100:10000000">More than 100 GB</option></select></div><div id="virusType-div" class="browser-input" style="float:left">Virus Type : <select title="Select a virus to sort by" id="virus" class="update" style="width: 80px; margin-right: 10px;margin-top: 10px;"><option class="form" value="false">All</option><option class="form" value=".vddos">vddos</option><option class="form" value=".vwarez">vwarez</option><option class="form" value=".vminer">vminer</option><option class="form" value=".vspam">vspam</option><option class="form" value="No running virus">none</option></select></div></div><div class="span12 statistics" style="display:none;"><p>You have a total of <b>'+ statistics.ALL +'</b> IP of which <b><font color="red">'+statistics.noviri+'</font></b>, have no virus (<a id="exportUnusedIPsLink" href="javascript:void(0)">Export them!</a>). Between  <span class="label label-success">' +statistics.VPC +' VPC</span> and <span class="label label-info ">'+statistics.NPC+' NPC</span> you are running <font color="orange">'+ statistics.vminer +'</font> <font color="green"><b>miner(s)</b></font>, <font color="orange">'+ statistics.vspam +'</font> <font color="green"><b>spam(s)</b></font>, and <font color="orange">'+ statistics.vwarez+'</font> <font color="green"><b>warez(s)</b></font>.<br><span class="small">Refresh page to see any scanned results.</span></p></div><div class="span12 advanced-search" style="display: none;"><div class="span12 advanced-search" style="display: none;"><div id="internetSpeed-div" class="browser-input" style="float:left">Internet Speeds : <select title="Select internet speed to sort by" class="update" id="internet" style="width: 102px;margin-right: 10px;margin-top: 10px;"><option class="form" value="false">View all</option><option class="form" value="1">1 Mbit/s</option><option class="form" value="2">2 Mbit/s</option><option class="form" value="4">4 Mbit/s</option><option class="form" value="10">10 Mbit/s</option><option class="form" value="25">25 Mbit/s</option><option class="form" value="50">50 Mbit/s</option><option class="form" value="100">100 Mbit/s</option><option class="form" value="250">250 Mbit/s</option><option class="form" value="500">500 Mbit/s</option><option class="form" value="1000">1 Gbit/s</option></select></div><div id="storageSpace-div" class="browser-input" style=" float:left">Storage Space : <select title="Select storage space range to sort by" id="storage" class="update" style="width: 153px; margin-right: 10px;margin-top: 10px;"><option class="form" value="false">View all</option><option class="form" value="0.1:10">100 MB - 10 GB</option><option class="form" value="10:50">10 GB - 50 GB</option><option class="form" value="50:100">50 GB - 100GB</option><option class="form" value="100:10000000">More than 100 GB</option></select></div><div id="virusType-div" class="browser-input" style="float:left">Virus Type : <select title="Select a virus to sort by" id="virus" class="update" style="width: 80px; margin-right: 10px;margin-top: 10px;"><option class="form" value="false">All</option><option class="form" value=".vddos">vddos</option><option class="form" value=".vwarez">vwarez</option><option class="form" value=".vminer">vminer</option><option class="form" value=".vspam">vspam</option><option class="form" value="No running virus">none</option></select></div></div><div class="span12 advanced-search" style="display: none; margin: 0px;">Full text search : <input id="text-search" type="text" style="margin: 0px;margin-right: 3px;"><span style="margin-left: 5px;" class="label label-success">VPC<input type="checkbox" style="margin: 5px;margin-bottom: 6px;" checked=""></span><span style="margin-left: 5px;" class="label label-info ">NPC<input type="checkbox" style="margin: 5px;margin-bottom: 6px;" checked=""></span></div></div></div><div class="nav nav-tabs loading" style="clear: both;display: none;">&nbsp;</div><center class=""><i style="display: none;" class="fa fa-spinner fa-spin fa-3x loading"></i></center><div class="nav nav-tabs" style="clear: both;">&nbsp;</div> </div>');
+        $('#exportUnusedIPsLink').on('click', function() {
+            functions.hacked_database.exportUnusedIPs();
+        });
         $(".enhanced .link").on().click(function(){
             $(".active").attr("class", "link");
             $(this).attr("class", "link active");
@@ -1190,6 +1193,41 @@ function loadScript() {
             });
         }
         return slave_list;
+    };
+
+    functions.hacked_database.exportUnusedIPs = function() {
+        if (localStorage.getItem('DB') === null) {
+            alert("You need to scan you Database before you can use this feature.");
+            return;
+        }
+        var db = JSON.parse(localStorage.getItem('DB'));
+        var unusedIPs = [];
+        $.each(db, function(index, item) {
+            if (item.v.name == 'No running virus') {
+                unusedIPs.push(item.ip);
+            }
+        });
+        if (unusedIPs.length == 0) {
+            alert('Nothing to export!');
+            return;
+        }
+        if (!$('#unusedIPsOutputModal').length) {
+            var outputModal = '<div id="unusedIPsOutputModal"class="fade modal"role=dialog tabindex=-1><div class=modal-dialog role=document><div class=modal-content><div class=modal-header><button class=close type=button data-dismiss=modal aria-label=Close><span aria-hidden=true>&times;</span></button><h4 class=modal-title>IP\'s without a virus</h4></div><div class=modal-body><textarea id="unusedIPsOutputTextarea" rows="10" style="min-width:90%;"></textarea></div><div class=modal-footer><button class="btn btn-default"type=button data-dismiss=modal>Close</button></div></form></div></div></div>';
+            $('body').append(outputModal);
+        }
+        $('#unusedIPsOutputTextarea').val(unusedIPs.join('\n'));
+        $('#unusedIPsOutputModal').modal('show');
+        $(".modal-backdrop").removeClass("modal-backdrop");
+        $.getScript('https://cdn.jsdelivr.net/clipboard.js/1.5.13/clipboard.min.js', function() {
+            $('#unusedIPsOutputModal .modal-footer').prepend('<button id="copyToClipboard"data-clipboard-target="#unusedIPsOutputTextarea"data-toggle="tooltip"title="Copied!"class="btn btn-primary"type=button>Copy to Clipboard</button>');
+            var clipboard = new Clipboard('#copyToClipboard');
+            $('#copyToClipboard').tooltip({
+                trigger: 'manual'
+            });
+            clipboard.on('success', function() {
+                $('#copyToClipboard').tooltip('show');
+            });
+        });
     };
 
     // BUGFIXES \\
@@ -1474,7 +1512,7 @@ function loadScript() {
         var totalPages = parseInt($('.pagination').first().find('strong').eq(1).text());
         if (currentPage < totalPages) {
             var requestingNewPage = false;
-            $('.pagination').first().prepend('<a id="custom-infinite-scroll-toggle" href="javascript:void(0)">Infinite Scroll: <span id="custom-infinite-scroll-state">OFF</span></a> • ');
+            $('.pagination').first().prepend('<a id="custom-infinite-scroll-toggle" href="javascript:void(0)">Infinite Scroll: <span id="custom-infinite-scroll-state">OFF</span></a> &bull; ');
             if (localStorage.getItem('custom-infinite-scroll') == 'true') {
                 $('#custom-infinite-scroll-state').html('ON');
             }
@@ -1598,35 +1636,43 @@ function loadScript() {
     };
 
     // GLOBAL \\
+    functions.global = {};
+    functions.global.addCreditsGame = function() {
+        $('#breadcrumb.center .center').append('You are using HexEnhanced+ v' + GM_info.script.version);
+    };
 
-         // ISP \\
-         functions.isp = {};
-         functions.isp.guard = function(){
-             var ISP = $('a[href*="195.153.108.51"]');
-             ISP.attr("href", "#");
-             ISP.on().click(function(){
-                if (confirm("This may change your IP!") === true){
-                    window.location.href = "/internet?ip=195.153.108.51";
-                }
-             });
-         };
-         // PROCESSES \\
-         functions.processes = {};
-         functions.processes.title_view = function(){
-             var title = $(".proc-desc b").text() + " : ";
-             if (title === ""){title = $(".proc-desc").text();}
-             $('.elapsed').bind("DOMSubtreeModified",function(){
-                 var p = $(".percent b").text();
-                 var str = title  + p;
-                 var total = str.length;
-                 if (total > 24){
-                     var deference = total - 28;
-                     var middle = Math.round(title.length/2);
-                     str = str.slice(0, middle) + "..." + str.slice(middle+deference, str.length);
-                }
-                $("title").text(str);
-            });
-         };
+    functions.global.addCreditsForum = function() {
+        $('#copyrights').append('<br>You are using HexEnhanced+ v' + GM_info.script.version);
+    };
+
+     // ISP \\
+     functions.isp = {};
+     functions.isp.guard = function(){
+         var ISP = $('a[href*="195.153.108.51"]');
+         ISP.attr("href", "#");
+         ISP.on().click(function(){
+            if (confirm("This may change your IP!") === true){
+                window.location.href = "/internet?ip=195.153.108.51";
+            }
+         });
+     };
+     // PROCESSES \\
+     functions.processes = {};
+     functions.processes.title_view = function(){
+         var title = $(".proc-desc b").text() + " : ";
+         if (title === ""){title = $(".proc-desc").text();}
+         $('.elapsed').bind("DOMSubtreeModified",function(){
+             var p = $(".percent b").text();
+             var str = title  + p;
+             var total = str.length;
+             if (total > 24){
+                 var deference = total - 28;
+                 var middle = Math.round(title.length/2);
+                 str = str.slice(0, middle) + "..." + str.slice(middle+deference, str.length);
+            }
+            $("title").text(str);
+        });
+     };
 
 
     function getCookie(cname) {
@@ -1671,12 +1717,12 @@ function loadScript() {
                     event.preventDefault();
                     functions.bugfixes.fixTheTeamLink();
                 });
-
-                if (window.location.pathname.match('/viewtopic.php')) {
-                    // User is in topic
-                    functions.forum.addInfiniteScroll();
-                }
             }
+            if (window.location.pathname.match('/viewtopic.php')) {
+                // User is in topic
+                functions.forum.addInfiniteScroll();
+            }
+            functions.global.addCreditsForum();
         } else {
             // Game functions
             if ($('a[href="logout"]').length) {
@@ -1687,6 +1733,7 @@ function loadScript() {
                 functions.clan.friendly_ips.add_sidebar();
                 functions.clan.friendly_ips.initiate_localhost();
                 functions.hacked_database.runaways.initiate_localhost();
+                functions.global.addCreditsGame();
 
                 if (localStorage.getItem('hide-he2-ad') == 'true' && $('#he2').length) {
                     $('#he2').remove();
@@ -1755,7 +1802,7 @@ function loadScript() {
                     if (!pageDetails.search){
                         functions.hacked_database.runaways.check();
                     }
-                    if (pageDetails.search.action == "runaways"){
+                    if (pageDetails.search !== undefined && pageDetails.search.action == "runaways"){
                         functions.hacked_database.runaways.ips_page();
                     }
                 }
