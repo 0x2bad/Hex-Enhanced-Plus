@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HexEnhanced+
 // @namespace    HexEnhancedPlus
-// @version      1.0.2
+// @version      1.0.3
 // @description  HexEnhanced+ adds a load of features to Hacker Experience 1 and fixes some bugs aswell.
 // @author       MacHacker, Jasperr & Johannes
 // @match        https://*.hackerexperience.com/*
@@ -1212,21 +1212,22 @@ function loadScript() {
             return;
         }
         if (!$('#unusedIPsOutputModal').length) {
-            var outputModal = '<div id="unusedIPsOutputModal"class="fade modal"role=dialog tabindex=-1><div class=modal-dialog role=document><div class=modal-content><div class=modal-header><button class=close type=button data-dismiss=modal aria-label=Close><span aria-hidden=true>&times;</span></button><h4 class=modal-title>IP\'s without a virus</h4></div><div class=modal-body><textarea id="unusedIPsOutputTextarea" rows="10" style="min-width:90%;"></textarea></div><div class=modal-footer><button class="btn btn-default"type=button data-dismiss=modal>Close</button></div></form></div></div></div>';
+            var outputModal = '<div id="unusedIPsOutputModal"class="fade modal"role=dialog tabindex=-1><div class=modal-dialog role=document><div class=modal-content><div class=modal-header><button class=close type=button data-dismiss=modal aria-label=Close><span aria-hidden=true>&times;</span></button><h4 class=modal-title>IP\'s without a virus</h4></div><div class=modal-body><textarea id="unusedIPsOutputTextarea" rows="10" style="min-width:90%;"></textarea></div><div class=modal-footer><button id="copyToClipboard"data-clipboard-target="#unusedIPsOutputTextarea"data-toggle="tooltip"title="Copied!"class="btn btn-primary"type=button>Copy to Clipboard</button><button class="btn btn-default"type=button data-dismiss=modal>Close</button></div></form></div></div></div>';
             $('body').append(outputModal);
+            $('#unusedIPsOutputModal #copyToClipboard').attr('disabled', true);
         }
         $('#unusedIPsOutputTextarea').val(unusedIPs.join('\n'));
         $('#unusedIPsOutputModal').modal('show');
         $(".modal-backdrop").removeClass("modal-backdrop");
         $.getScript('https://cdn.jsdelivr.net/clipboard.js/1.5.13/clipboard.min.js', function() {
-            $('#unusedIPsOutputModal .modal-footer').prepend('<button id="copyToClipboard"data-clipboard-target="#unusedIPsOutputTextarea"data-toggle="tooltip"title="Copied!"class="btn btn-primary"type=button>Copy to Clipboard</button>');
-            var clipboard = new Clipboard('#copyToClipboard');
-            $('#copyToClipboard').tooltip({
+            var clipboard = new Clipboard('#unusedIPsOutputModal #copyToClipboard');
+            $('#unusedIPsOutputModal #copyToClipboard').tooltip({
                 trigger: 'manual'
             });
             clipboard.on('success', function() {
-                $('#copyToClipboard').tooltip('show');
+                $('#unusedIPsOutputModal #copyToClipboard').tooltip('show');
             });
+            $('#unusedIPsOutputModal #copyToClipboard').attr('disabled', false);
         });
     };
 
