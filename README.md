@@ -2,7 +2,7 @@
 HexEnhanced+ is a userscript for [Hacker Experience 1](https://legacy.hackerexperience.com/). It is developed by MacHacker, Johannes (GeneralFranklin) and Jasperr.
 
 # Features
-HexEnhanced+ contains several bugfixes but mostly adds more features:
+HexEnhanced+ contains several bugfixes but mostly adds more features.
 - Game features
   * Fixes chartpie on the XHD page
   * Adds a direct link to the BTC Market in the sidebar
