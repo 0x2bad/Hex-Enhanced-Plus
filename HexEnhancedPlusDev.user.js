@@ -201,7 +201,7 @@ function loadScript() {
             friendlies[1][id] = datapoint;
             localStorage.setItem("friendlies", JSON.stringify(friendlies));
             gritterNotify({
-                title: "Sucsess!",
+                title: "Success!",
                 text: 'The IP <b><a href="internet?ip='+datapoint.ip+'">['+datapoint.ip+"]</a></b>  has been linked to <b>"+datapoint.name+"</b> ",
                 image: "",
                 sticky: false
@@ -212,6 +212,8 @@ function loadScript() {
             var del_id = this.id;
             $('#'+del_id).remove();
             friendlies[1][del_id] = null;
+            friendlies[1] = friendlies[1].filter(function(value) { return value !== null; });
+            friendlies[0] = friendlies[1].length;
             localStorage.setItem("friendlies", JSON.stringify(friendlies));
         });
         $(".active").attr("class", "link");
@@ -323,10 +325,11 @@ function loadScript() {
     };
     functions.btc.sidebar = {};
     functions.btc.sidebar.add = function(){
-        $('<li id="menu-btc"><a href="internet?ip=99.232.28.232"><i class="fa fa-inverse fa-bitcoin"></i> <span>BTC Market</span><span class="label"></span></a></li>').insertAfter($("#menu-internet"));
+        $('<li id="menu-btc"><a href="internet?ip=99.232.28.232"><i class="fa fa-inverse fa-bitcoin"></i> <span>BTC Market</span></a></li>').insertAfter($("#menu-internet"));
     };
 
     functions.btc.sidebar.live = function() {
+        $('#menu-btc > a').append('<span class="label"></span>');
         var run = function(){
             r = $.ajax({
                 url:"finances",
@@ -1636,6 +1639,116 @@ function loadScript() {
 
     // GLOBAL \\
     functions.global = {};
+    functions.global.addSettings = function() {
+        var modal = '<div class="fade modal" role="dialog" id="hexEnhancedPlusSettingsModal" tabindex="-1">';
+            modal += '<div class="modal-dialog" role="document">';
+                modal += '<div class="modal-content">';
+                    modal += '<div class="modal-header">';
+                        modal += '<button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+                        modal += '<h4 class="modal-title">HexEnhanced+ Settings</h4>';
+                    modal += '</div>';
+                    modal += '<form id="hexEnhancedPlusSettingsForm">';
+                        modal += '<div class="modal-body">';
+                            modal += '<div class="widget-box">';
+                                modal += '<div class="widget-title">';
+                                    modal += '<h5>Sidebar settings</h5>';
+                                modal += '</div>';
+                                modal += '<div class="widget-content">';
+                                    modal += '<label><input type="checkbox" id="disable-sidebar-btc-live"> Remove the amount of BTC updated live in the sidebar.</label>';
+                                    modal += '<label><input type="checkbox" id="disable-sidebar-btc"> Remove BTC Market link from sidebar (also removes the live amount of BTC).</label>';
+                                    modal += '<label><input type="checkbox" id="disable-sidebar-friendlies"> Remove Friendly IP\'s link from sidebar.</label>';
+                                    modal += '<label><input type="checkbox" id="disable-sidebar-toggle"> Remove sidebar toggle link from sidebar.</label>';
+                                modal += '</div>';
+                            modal += '</div>';
+                        modal += '</div>';
+                        modal += '<div class="modal-footer">';
+                            modal += '<button class="btn btn-default" type="button" data-dismiss="modal">Close</button>';
+                            modal += '<button class="btn btn-primary" type="submit">Save</button>';
+                        modal += '</div>';
+                    modal += '</form>';
+                modal += '</div>';
+            modal += '</div>';
+        modal += '</div>';
+        $('body').append(modal);
+        $('#hexEnhancedPlusSettingsModal .widget-box').css({
+            'margin-top': '5px',
+            'margin-bottom': '5px'
+        });
+        $('#hexEnhancedPlusSettingsForm label').css('cursor', 'pointer');
+        $('#hexEnhancedPlusSettingsForm input[type="checkbox"]').css({
+            'float': 'left',
+            'margin-right': '5px'
+        });
+        $('#breadcrumb.center .center').append(' (<a href="javascript:void(0)" id="open-settings">settings</a>)');
+        $('#open-settings').prev().css({
+            'background-image': 'none',
+            'padding-right': '10px'
+        });
+        $('#open-settings').css({
+            'padding': '0',
+            'font-size': '14px',
+            'color': '#005580'
+        });
+        $('#open-settings').hover(function() {
+            $(this).css('text-decoration', 'underline');
+        }, function() {
+            $(this).css('text-decoration', 'none');
+        });
+        $('#open-settings').on('click', function() {
+            $('#hexEnhancedPlusSettingsModal').modal('show');
+            if (localStorage.getItem('disable-sidebar-btc-live') === 'true') {
+                $('#disable-sidebar-btc-live').prop('checked', true);
+            } else {
+                $('#disable-sidebar-btc-live').prop('checked', false);
+            }
+            if (localStorage.getItem('disable-sidebar-btc') === 'true') {
+                $('#disable-sidebar-btc').prop('checked', true);
+            } else {
+                $('#disable-sidebar-btc').prop('checked', false);
+            }
+            if (localStorage.getItem('disable-sidebar-friendlies') === 'true') {
+                $('#disable-sidebar-friendlies').prop('checked', true);
+            } else {
+                $('#disable-sidebar-friendlies').prop('checked', false);
+            }
+            if (localStorage.getItem('disable-sidebar-toggle') === 'true') {
+                $('#disable-sidebar-toggle').prop('checked', true);
+            } else {
+                $('#disable-sidebar-toggle').prop('checked', false);
+            }
+        });
+        $('#hexEnhancedPlusSettingsForm').submit(function(event) {
+            event.preventDefault();
+            if ($('#disable-sidebar-btc-live').is(':checked')) {
+                localStorage.setItem('disable-sidebar-btc-live', 'true');
+            } else {
+                localStorage.removeItem('disable-sidebar-btc-live');
+            }
+            if ($('#disable-sidebar-btc').is(':checked')) {
+                localStorage.setItem('disable-sidebar-btc', 'true');
+            } else {
+                localStorage.removeItem('disable-sidebar-btc');
+            }
+            if ($('#disable-sidebar-friendlies').is(':checked')) {
+                localStorage.setItem('disable-sidebar-friendlies', 'true');
+            } else {
+                localStorage.removeItem('disable-sidebar-friendlies');
+            }
+            if ($('#disable-sidebar-toggle').is(':checked')) {
+                localStorage.setItem('disable-sidebar-toggle', 'true');
+            } else {
+                localStorage.removeItem('disable-sidebar-toggle');
+            }
+            $('#hexEnhancedPlusSettingsModal').modal('hide');
+            gritterNotify({
+                title: 'HexEnhanced+ Settings',
+                text: 'Succesfully saved your settings!',
+                image: '',
+                sticky: false
+            });
+        });
+    };
+
     functions.global.addCreditsGame = function() {
         $('#breadcrumb.center .center').append('You are using HexEnhanced+ v' + GM_info.script.version);
     };
@@ -1727,12 +1840,19 @@ function loadScript() {
             if ($('a[href="logout"]').length) {
                 // User is logged in
                 functions.isp.guard();
-                functions.btc.sidebar.add();
-                functions.btc.sidebar.live();
-                functions.clan.friendly_ips.add_sidebar();
+                if (localStorage.getItem('disable-sidebar-btc') !== 'true') {
+                    functions.btc.sidebar.add();
+                    if (localStorage.getItem('disable-sidebar-btc-live') !== 'true') {
+                        functions.btc.sidebar.live();
+                    }
+                }
+                if (localStorage.getItem('disable-sidebar-friendlies') !== 'true') {
+                    functions.clan.friendly_ips.add_sidebar();
+                }
                 functions.clan.friendly_ips.initiate_localhost();
                 functions.hacked_database.runaways.initiate_localhost();
                 functions.global.addCreditsGame();
+                functions.global.addSettings();
 
                 if (isOnPage('/software?page=external') || isOnPage('/software.php?page=external')) {
                     functions.bugfixes.fixXHDChart();
@@ -1748,10 +1868,11 @@ function loadScript() {
                     functions.bugfixes.fixTop7();
                 }
 
-                functions.sidebar.addSideBarToggle();
-
-                if (localStorage.getItem('side-bar-small') == 'true') {
-                    functions.sidebar.hideSideBar(false);
+                if (localStorage.getItem('disable-sidebar-toggle') !== 'true') {
+                    functions.sidebar.addSideBarToggle();
+                    if (localStorage.getItem('side-bar-small') == 'true') {
+                        functions.sidebar.hideSideBar(false);
+                    }
                 }
 
                 if (isOnPage('/mail?action=new') || isOnPage('/mail.php?action=new')) {
