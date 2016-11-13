@@ -22,6 +22,7 @@ HexEnhanced+ contains several bugfixes but mostly adds more features.
   * Fixes Email tab on a user's profile
   * Fixes password changing
   * Adds process guards that sends a notification and plays a sound when a process completes
+  * Settings menu where you can enable/disable script's features (by default all of the features are enabled)
 - Forum features
   * Fixes the "The team" link
   * Adds infinite scrolling to topics
