@@ -21,6 +21,7 @@ HexEnhanced+ contains several bugfixes but mostly adds more features.
   * Adds process progress in the tab text
   * Fixes Email tab on a user's profile
   * Fixes password changing
+  * Adds process guards that sends a notification and plays a sound when a process completes
 - Forum features
   * Fixes the "The team" link
   * Adds infinite scrolling to topics
