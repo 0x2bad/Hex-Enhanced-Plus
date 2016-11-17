@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HexEnhanced+
 // @namespace    HexEnhancedPlus
-// @version      1.1.0
+// @version      1.1.1
 // @description  HexEnhanced+ adds a load of features to Hacker Experience 1 and fixes some bugs aswell.
 // @author       MacHacker, Jasperr & Johannes
 // @match        https://*.hackerexperience.com/*
@@ -1723,6 +1723,7 @@ function loadScript() {
         });
      };
 
+     var processGuardIsSoundPlaying = false;
      functions.processes.guardProcesses = function() {
         var triggeredIDs = JSON.parse(localStorage.getItem('process-guard-triggered-ids')) || [];
 
@@ -1742,12 +1743,20 @@ function loadScript() {
                             triggeredIDs.push(processID);
                             var processDescription = $('.proc-desc', this).text();
                             if (localStorage.getItem('disable-process-guard-sound') !== 'true') {
-                                context = new AudioContext;
-                                oscillator = context.createOscillator();
-                                oscillator.frequency.value = 1000;
-                                oscillator.connect(context.destination);
-                                oscillator.start(0);
-                                setTimeout(() => { oscillator.stop(); }, 250);
+                                if (!processGuardIsSoundPlaying) {
+                                    var context = new AudioContext;
+                                    var oscillator = context.createOscillator();
+                                    var gain = context.createGain();
+
+                                    oscillator.frequency.value = 500;
+                                    oscillator.connect(gain);
+                                    gain.gain.value = 0.75;
+                                    gain.connect(context.destination);
+                                    processGuardIsSoundPlaying = true;
+                                    oscillator.start(0);
+                                    setTimeout(oscillator.stop.bind(oscillator), 100);
+                                    setTimeout(() => { processGuardIsSoundPlaying = false; }, 100);
+                                }
                             }
                             gritterNotify({
                                 title: 'HexEnhanced+ Process Guard',
