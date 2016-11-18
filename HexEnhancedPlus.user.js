@@ -710,7 +710,7 @@ function loadScript() {
             $(".widget-content.padding.noborder").prepend('<span class="delete_selected btn btn-danger mission-abort">Delete Selected</span>');
         }
         if (!$("#select").length){
-            $(".widget-content.padding.noborder").prepend('<select style="margin:10px;"id="select"><option value="false">None</option><option value="Unknown">Unknown</option><option value="FBI">FBI</option><option value="Safenet">Safenet</option><option value="Social Clan">Social Clan</option><option value="false">Badge Advisor</option><option value="Social">Social</option></select>');
+            $(".widget-content.padding.noborder").prepend('<select style="margin:10px;"id="select"><option value="false">None</option><option value="Unknown">Unknown</option><option value="FBI">FBI</option><option value="Safenet">Safenet</option><option value="Social Clan">Social Clan</option><option value="Badge Advisor">Badge Advisor</option><option value="Social">Social</option></select>');
         }
 
         $("#select").bind().change(function(){
