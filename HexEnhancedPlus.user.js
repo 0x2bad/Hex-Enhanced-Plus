@@ -1071,7 +1071,7 @@ function loadScript() {
 
     functions.hacked_database.update = function(){
         if (localStorage.getItem("DB") === null){
-            alert("You need to scan you Database before you can view these features.");
+            alert("You need to scan your Database before you can view these features.");
             return;
         }
         var slaves = JSON.parse(localStorage.getItem("DB"));
@@ -1200,7 +1200,7 @@ function loadScript() {
 
     functions.hacked_database.exportUnusedIPs = function() {
         if (localStorage.getItem('DB') === null) {
-            alert("You need to scan you Database before you can use this feature.");
+            alert("You need to scan your Database before you can use this feature.");
             return;
         }
         var db = JSON.parse(localStorage.getItem('DB'));
