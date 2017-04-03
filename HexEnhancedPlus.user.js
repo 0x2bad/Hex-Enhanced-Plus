@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HexEnhanced+
 // @namespace    HexEnhancedPlus
-// @version      1.1.1
+// @version      1.1.2
 // @description  HexEnhanced+ adds a load of features to Hacker Experience 1 and fixes some bugs aswell.
 // @author       MacHacker, Jasperr & Johannes
 // @match        https://*.hackerexperience.com/*
@@ -1697,11 +1697,11 @@ function loadScript() {
      // ISP \\
      functions.isp = {};
      functions.isp.guard = function(){
-         var ISP = $('a[href*="195.153.108.51"]');
+         var ISP = $('a[href*="1.158.201.174"]');
          ISP.attr("href", "#");
          ISP.on().click(function(){
             if (confirm("This may change your IP!") === true){
-                window.location.href = "/internet?ip=195.153.108.51";
+                window.location.href = "/internet?ip=1.158.201.174";
             }
          });
      };
