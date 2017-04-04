@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HexEnhanced+
 // @namespace    HexEnhancedPlus
-// @version      1.1.2
+// @version      1.1.3
 // @description  HexEnhanced+ adds a load of features to Hacker Experience 1 and fixes some bugs aswell.
 // @author       MacHacker, Jasperr & Johannes
 // @match        https://*.hackerexperience.com/*
@@ -327,7 +327,7 @@ function loadScript() {
     };
     functions.btc.sidebar = {};
     functions.btc.sidebar.add = function(){
-        $('<li id="menu-btc"><a href="internet?ip=99.232.28.232"><i class="fa fa-inverse fa-bitcoin"></i> <span>BTC Market</span></a></li>').insertAfter($("#menu-internet"));
+        $('<li id="menu-btc"><a href="internet?ip=160.7.191.179"><i class="fa fa-inverse fa-bitcoin"></i> <span>BTC Market</span></a></li>').insertAfter($("#menu-internet"));
     };
 
     functions.btc.sidebar.live = function() {
