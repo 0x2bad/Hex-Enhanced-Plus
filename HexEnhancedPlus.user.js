@@ -327,7 +327,7 @@ function loadScript() {
     };
     functions.btc.sidebar = {};
     functions.btc.sidebar.add = function(){
-        $('<li id="menu-btc"><a href="internet?ip=160.7.191.179"><i class="fa fa-inverse fa-bitcoin"></i> <span>BTC Market</span></a></li>').insertAfter($("#menu-internet"));
+        $('<li id="menu-btc"><a href="internet?ip=7.28.21.234"><i class="fa fa-inverse fa-bitcoin"></i> <span>BTC Market</span></a></li>').insertAfter($("#menu-internet"));
     };
 
     functions.btc.sidebar.live = function() {
